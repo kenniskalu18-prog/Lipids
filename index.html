@@ -1,0 +1,2142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lipids | JUPEB/A-Level Biology</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary: #8A4F7D;
+            --secondary: #C06C84;
+            --accent: #F8B195;
+            --light: #FCE4D8;
+            --dark: #563440;
+            --success: #355C7D;
+            --warning: #F67280;
+            --text: #2D2D2D;
+            --bg-light: #f9f5f7;
+            --card-bg: #ffffff;
+        }
+        
+        body {
+            background-color: var(--bg-light);
+            color: var(--text);
+            line-height: 1.6;
+            padding: 0;
+            max-width: 100%;
+            margin: 0;
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        /* Floating background elements */
+        .floating-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+        
+        .floating-element {
+            position: absolute;
+            opacity: 0.1;
+            color: var(--secondary);
+            font-size: 24px;
+            animation: float 20s infinite linear;
+        }
+        
+        .floating-bubble {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(192, 108, 132, 0.1);
+            animation: float 15s infinite linear;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+            }
+        }
+        
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--dark));
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            border-bottom: 8px solid var(--accent);
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(192, 108, 132, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(248, 177, 149, 0.1) 0%, transparent 50%);
+            z-index: 0;
+        }
+        
+        .logo {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            display: inline-block;
+            background: linear-gradient(45deg, var(--accent), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            position: relative;
+            z-index: 1;
+        }
+        
+        h1 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+            padding: 0 10px;
+            word-wrap: break-word;
+        }
+        
+        .tagline {
+            font-size: 1rem;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+            padding: 0 10px;
+        }
+        
+        h2 {
+            color: var(--primary);
+            margin: 25px 0 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--secondary);
+            position: relative;
+            font-size: 1.5rem;
+        }
+        
+        h2::after {
+            content: "";
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 60px;
+            height: 2px;
+            background: var(--accent);
+        }
+        
+        h3 {
+            color: var(--secondary);
+            margin: 20px 0 12px;
+            font-size: 1.3rem;
+        }
+        
+        h4 {
+            color: var(--primary);
+            margin: 15px 0 8px;
+            font-size: 1.1rem;
+        }
+        
+        .content-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            padding: 25px 0;
+            width: 100%;
+        }
+        
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-left: 4px solid var(--secondary);
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+        }
+        
+        .card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--secondary), var(--accent));
+        }
+        
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+        
+        .intro-card {
+            background: linear-gradient(135deg, #FCE4D8, #F8D1C5);
+            border-left: 4px solid var(--secondary);
+        }
+        
+        .definition-box {
+            background: linear-gradient(135deg, #FCE4D8, #F8D1C5);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 12px 0;
+            border-left: 4px solid var(--success);
+        }
+        
+        .formula-box {
+            background: linear-gradient(135deg, #FCE4D8, #F8D1C5);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 12px 0;
+            text-align: center;
+            font-family: 'Cambria Math', serif;
+            font-size: 1rem;
+            border-left: 4px solid var(--primary);
+            overflow-x: auto;
+        }
+        
+        .example-box {
+            background: linear-gradient(135deg, #FCE4D8, #F8D1C5);
+            padding: 12px;
+            border-radius: 8px;
+            margin: 12px 0;
+            font-family: 'Courier New', monospace;
+            border-left: 4px solid var(--secondary);
+            font-size: 0.9rem;
+            overflow-x: auto;
+        }
+        
+        .concept-box {
+            background: linear-gradient(135deg, #E8F4F8, #C5E7F7);
+            padding: 12px;
+            border-radius: 8px;
+            margin: 12px 0;
+            border-left: 4px solid var(--warning);
+        }
+        
+        .step-box {
+            background: linear-gradient(135deg, #E8F4F8, #C5E7F7);
+            padding: 12px;
+            border-radius: 8px;
+            margin: 12px 0;
+            border-left: 4px solid var(--success);
+        }
+        
+        .principle-box {
+            background: linear-gradient(135deg, #F0E6F6, #E1D0F0);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid var(--primary);
+        }
+        
+        .diagram-box {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border: 1px solid #e0e0e0;
+            text-align: center;
+        }
+        
+        .diagram {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+            border-radius: 6px;
+            overflow: hidden;
+            font-size: 0.9rem;
+            display: block;
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+        
+        th, td {
+            padding: 10px 12px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        th {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            font-weight: 600;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f5f5f5;
+        }
+        
+        tr:hover {
+            background-color: #f9e8f1;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            margin: 8px 5px;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 3px 5px rgba(0,0,0,0.1);
+            font-size: 0.9rem;
+            text-align: center;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 10px rgba(0,0,0,0.15);
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(135deg, #95a5a6, #7f8c8d);
+        }
+        
+        .btn-success {
+            background: linear-gradient(135deg, var(--success), #355C7D);
+        }
+        
+        .quiz-section {
+            background: linear-gradient(135deg, #FCE4D8, #F8D1C5);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 25px 0;
+            border-left: 4px solid var(--secondary);
+            width: 100%;
+        }
+        
+        .quiz-instructions {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid var(--warning);
+        }
+        
+        .quiz-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            width: 100%;
+        }
+        
+        .timer {
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-align: center;
+            margin: 15px 0;
+            color: var(--accent);
+            background: linear-gradient(135deg, #FFEBEE, #FFCDD2);
+            padding: 8px;
+            border-radius: 6px;
+            border-left: 4px solid var(--accent);
+        }
+        
+        .question {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f9f9f9;
+            border-radius: 8px;
+            border-left: 4px solid var(--secondary);
+        }
+        
+        .options {
+            margin-left: 0;
+        }
+        
+        .option {
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #f5f5f5;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+            border-left: 3px solid transparent;
+        }
+        
+        .option:hover {
+            background-color: #f9e8f1;
+            border-left: 3px solid var(--secondary);
+        }
+        
+        .option.selected {
+            background-color: #f0d6e3;
+            border-left: 3px solid var(--secondary);
+        }
+        
+        .option.correct {
+            background-color: #d6eaf8;
+            border-left: 3px solid var(--success);
+        }
+        
+        .option.incorrect {
+            background-color: #fadbd8;
+            border-left: 3px solid var(--accent);
+        }
+        
+        .results {
+            text-align: center;
+            padding: 25px;
+            background: linear-gradient(135deg, #E8F6F3, #D1F2EB);
+            border-radius: 10px;
+            margin: 25px 0;
+            border-left: 4px solid var(--success);
+            width: 100%;
+        }
+        
+        .score {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--success);
+            margin: 12px 0;
+        }
+        
+        .feedback {
+            margin: 15px 0;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 8px;
+            text-align: left;
+        }
+        
+        .strength {
+            color: var(--success);
+            font-weight: bold;
+        }
+        
+        .improvement {
+            color: var(--accent);
+            font-weight: bold;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .homework {
+            background: linear-gradient(135deg, #F5EEF8, #EBDEF0);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 25px 0;
+            border-left: 4px solid #8E44AD;
+            width: 100%;
+        }
+        
+        .resource-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 15px 0;
+            justify-content: center;
+        }
+        
+        footer {
+            background: linear-gradient(135deg, var(--primary), var(--dark));
+            color: white;
+            text-align: center;
+            padding: 25px 0;
+            margin-top: 40px;
+            border-top: 6px solid var(--accent);
+            width: 100%;
+        }
+        
+        .creator-link {
+            text-align: center;
+            margin: 15px 0;
+            font-size: 0.9rem;
+            color: var(--text);
+        }
+        
+        .creator-link a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+        
+        .creator-link a:hover {
+            color: var(--accent);
+        }
+        
+        /* Tablet styles */
+        @media (min-width: 768px) {
+            .container {
+                max-width: 720px;
+                padding: 0 20px;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .tagline {
+                font-size: 1.1rem;
+            }
+            
+            h2 {
+                font-size: 1.7rem;
+            }
+            
+            h3 {
+                font-size: 1.4rem;
+            }
+            
+            .card {
+                padding: 25px;
+            }
+            
+            .content-grid {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 25px;
+            }
+            
+            .wide-card {
+                grid-column: 1 / -1;
+            }
+            
+            table {
+                font-size: 1rem;
+                display: table;
+                overflow-x: visible;
+                white-space: normal;
+            }
+        }
+        
+        /* Desktop styles */
+        @media (min-width: 992px) {
+            .container {
+                max-width: 960px;
+            }
+            
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .content-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 30px;
+            }
+            
+            .card {
+                padding: 25px;
+            }
+        }
+        
+        /* Large desktop styles */
+        @media (min-width: 1200px) {
+            .container {
+                max-width: 1140px;
+            }
+            
+            .content-grid {
+                grid-template-columns: 1fr 1fr 1fr;
+            }
+        }
+        
+        /* Small mobile adjustments */
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 10px;
+            }
+            
+            header {
+                padding: 15px 0;
+            }
+            
+            .logo {
+                font-size: 2rem;
+            }
+            
+            h1 {
+                font-size: 1.5rem;
+            }
+            
+            .tagline {
+                font-size: 0.9rem;
+            }
+            
+            .card {
+                padding: 15px;
+            }
+            
+            .btn {
+                padding: 8px 16px;
+                font-size: 0.85rem;
+                display: block;
+                width: 100%;
+                margin: 5px 0;
+            }
+            
+            .resource-links {
+                flex-direction: column;
+            }
+        }
+        
+        /* Prevent horizontal scrolling */
+        html, body {
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+        
+        /* Ensure all content fits within viewport */
+        img, table, .formula-box, .example-box {
+            max-width: 100%;
+        }
+        
+        /* Improve text readability on small screens */
+        p, li, td {
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+        
+        @media (max-width: 767px) {
+            p, li, td {
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating background elements -->
+    <div class="floating-bg" id="floatingBg"></div>
+    
+    <header>
+        <div class="container">
+            <div class="logo">
+                <i class="fas fa-oil-can"></i>
+            </div>
+            <h1>Lipids</h1>
+            <p class="tagline">Understanding the Diverse World of Biological Molecules</p>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="content-grid">
+            <section class="card intro-card wide-card">
+                <h2>Welcome to Lipids!</h2>
+                <p>This comprehensive resource explores the fascinating and diverse world of lipids - essential biological molecules with crucial roles in energy storage, membrane structure, and signaling. Get ready to learn about:</p>
+                <ul>
+                    <li>Lipids as biomolecules and their unique properties</li>
+                    <li>Fatty acids - the building blocks of many lipids</li>
+                    <li>Triglycerides - energy storage molecules</li>
+                    <li>Phospholipids - key components of cell membranes</li>
+                    <li>Steroids and cholesterol</li>
+                    <li>Functions of lipids in living organisms</li>
+                    <li>Lipid metabolism and digestion</li>
+                </ul>
+            </section>
+            
+            <section class="card wide-card">
+                <h2>I. Introduction to Lipids as Biomolecules</h2>
+                
+                <div class="definition-box">
+                    <p><strong>Lipids</strong> are a diverse group of hydrophobic or amphipathic organic compounds that are insoluble in water but soluble in organic solvents like ethanol, chloroform, and ether.</p>
+                </div>
+                
+                <h3>Key Characteristics of Lipids:</h3>
+                <ol>
+                    <li>Lipids are primarily composed of carbon, hydrogen, and oxygen (some contain phosphorus and nitrogen).</li>
+                    <li>They have a high proportion of nonpolar C-H bonds, making them hydrophobic.</li>
+                    <li>They serve as concentrated energy stores (more than twice the energy per gram compared to carbohydrates).</li>
+                    <li>They are essential components of cell membranes (phospholipids and cholesterol).</li>
+                    <li>They function as signaling molecules and hormones (steroids, prostaglandins).</li>
+                </ol>
+                
+                <div class="concept-box">
+                    <p><strong>Biological Importance:</strong> Lipids provide long-term energy storage, form structural components of cell membranes, serve as thermal insulation, and act as signaling molecules in cellular communication.</p>
+                </div>
+                
+                <h3>Classification of Lipids:</h3>
+                <div class="step-box">
+                    <h4>Major Lipid Classes</h4>
+                    <ul>
+                        <li><strong>Simple lipids:</strong> Esters of fatty acids with alcohols (triglycerides, waxes)</li>
+                        <li><strong>Compound lipids:</strong> Esters of fatty acids with alcohols plus other groups (phospholipids, glycolipids)</li>
+                        <li><strong>Derived lipids:</strong> Substances derived from simple or compound lipids (fatty acids, steroids, lipid-soluble vitamins)</li>
+                        <li><strong>Miscellaneous lipids:</strong> Other lipids that don't fit neatly into above categories</li>
+                    </ul>
+                </div>
+            </section>
+            
+            <section class="card wide-card">
+                <h2>II. Fatty Acids - The Building Blocks</h2>
+                
+                <h3>A. Structure of Fatty Acids</h3>
+                
+                <div class="step-box">
+                    <h4>General Characteristics</h4>
+                    <p>Fatty acids are carboxylic acids with long hydrocarbon chains. They consist of:</p>
+                    <ul>
+                        <li>A carboxyl group (-COOH) at one end (polar head)</li>
+                        <li>A long hydrocarbon chain (nonpolar tail)</li>
+                        <li>Typically 4-28 carbon atoms (commonly 16-18)</li>
+                        <li>Can be saturated or unsaturated</li>
+                    </ul>
+                </div>
+                
+                <div class="formula-box">
+                    <h4>General Formula of Fatty Acids</h4>
+                    <p>R-COOH</p>
+                    <p>Where R is a hydrocarbon chain: CH₃(CH₂)ₙ</p>
+                    <p>Example: Palmitic acid: CH₃(CH₂)₁₄COOH</p>
+                </div>
+                
+                <div class="diagram-box">
+                    <h4>Fatty Acid Structure</h4>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Fatty_acid_generic_structure.png/800px-Fatty_acid_generic_structure.png" alt="Fatty acid structure" class="diagram">
+                    <p>Structure of a saturated fatty acid showing the carboxyl head and hydrocarbon tail</p>
+                </div>
+                
+                <h3>B. Classification of Fatty Acids</h3>
+                
+                <div class="step-box">
+                    <h4>Based on Saturation</h4>
+                    <ul>
+                        <li><strong>Saturated fatty acids:</strong> No double bonds between carbon atoms (e.g., palmitic acid, stearic acid)</li>
+                        <li><strong>Unsaturated fatty acids:</strong> Contain one or more double bonds
+                            <ul>
+                                <li>Monounsaturated: One double bond (e.g., oleic acid)</li>
+                                <li>Polyunsaturated: Two or more double bonds (e.g., linoleic acid, α-linolenic acid)</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Fatty Acid</th>
+                            <th>Type</th>
+                            <th>Formula</th>
+                            <th>Common Source</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Lauric acid</td>
+                            <td>Saturated</td>
+                            <td>C₁₂H₂₄O₂</td>
+                            <td>Coconut oil, palm kernel oil</td>
+                        </tr>
+                        <tr>
+                            <td>Palmitic acid</td>
+                            <td>Saturated</td>
+                            <td>C₁₆H₃₂O₂</td>
+                            <td>Palm oil, meat, dairy</td>
+                        </tr>
+                        <tr>
+                            <td>Stearic acid</td>
+                            <td>Saturated</td>
+                            <td>C₁₈H₃₆O₂</td>
+                            <td>Animal fats, cocoa butter</td>
+                        </tr>
+                        <tr>
+                            <td>Oleic acid</td>
+                            <td>Monounsaturated</td>
+                            <td>C₁₈H₃₄O₂</td>
+                            <td>Olive oil, canola oil</td>
+                        </tr>
+                        <tr>
+                            <td>Linoleic acid</td>
+                            <td>Polyunsaturated (ω-6)</td>
+                            <td>C₁₈H₃₂O₂</td>
+                            <td>Vegetable oils, nuts</td>
+                        </tr>
+                        <tr>
+                            <td>α-Linolenic acid</td>
+                            <td>Polyunsaturated (ω-3)</td>
+                            <td>C₁₈H₃₀O₂</td>
+                            <td>Flaxseed, walnuts, chia seeds</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <h3>C. Properties of Fatty Acids</h3>
+                
+                <div class="step-box">
+                    <h4>Physical Properties</h4>
+                    <ul>
+                        <li><strong>Melting point:</strong> Increases with chain length and saturation
+                            <ul>
+                                <li>Saturated fats: Higher melting points, solid at room temperature</li>
+                                <li>Unsaturated fats: Lower melting points, liquid at room temperature</li>
+                            </ul>
+                        </li>
+                        <li><strong>Solubility:</strong> Insoluble in water but soluble in organic solvents</li>
+                        <li><strong>Amphipathic nature:</strong> Have both hydrophilic (carboxyl group) and hydrophobic (hydrocarbon chain) regions</li>
+                    </ul>
+                </div>
+                
+                <div class="step-box">
+                    <h4>Essential Fatty Acids</h4>
+                    <ul>
+                        <li>Fatty acids that cannot be synthesized by the body and must be obtained from diet</li>
+                        <li>Include linoleic acid (ω-6) and α-linolenic acid (ω-3)</li>
+                        <li>Important for membrane structure, eicosanoid production, and brain function</li>
+                    </ul>
+                </div>
+            </section>
+            
+            <section class="card wide-card">
+                <h2>III. Triglycerides (Triacylglycerols)</h2>
+                
+                <h3>A. Structure of Triglycerides</h3>
+                
+                <div class="definition-box">
+                    <p><strong>Triglycerides</strong> are esters formed from one molecule of glycerol and three molecules of fatty acids. They are the main constituents of body fat in humans and animals, as well as vegetable fat.</p>
+                </div>
+                
+                <div class="formula-box">
+                    <h4>Formation of Triglycerides</h4>
+                    <p>Glycerol + 3 Fatty acids → Triglyceride + 3 H₂O</p>
+                    <p>This is a <strong>condensation reaction</strong> (esterification) forming ester bonds between the hydroxyl groups of glycerol and the carboxyl groups of fatty acids.</p>
+                </div>
+                
+                <div class="diagram-box">
+                    <h4>Triglyceride Structure</h4>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Triglyceride-general-structure.png/800px-Triglyceride-general-structure.png" alt="Triglyceride structure" class="diagram">
+                    <p>Structure of a triglyceride showing glycerol backbone and three fatty acid chains</p>
+                </div>
+                
+                <h3>B. Types of Triglycerides</h3>
+                
+                <div class="step-box">
+                    <h4>Based on Fatty Acid Composition</h4>
+                    <ul>
+                        <li><strong>Simple triglycerides:</strong> All three fatty acids are identical (e.g., tripalmitin, tristearin)</li>
+                        <li><strong>Mixed triglycerides:</strong> Contain two or three different fatty acids (most natural fats and oils)</li>
+                    </ul>
+                </div>
+                
+                <div class="step-box">
+                    <h4>Fats vs. Oils</h4>
+                    <ul>
+                        <li><strong>Fats:</strong> Predominantly saturated fatty acids, solid at room temperature (e.g., butter, lard)</li>
+                        <li><strong>Oils:</strong> Predominantly unsaturated fatty acids, liquid at room temperature (e.g., olive oil, sunflower oil)</li>
+                    </ul>
+                </div>
+                
+                <h3>C. Functions of Triglycerides</h3>
+                
+                <div class="step-box">
+                    <h4>Energy Storage</h4>
+                    <ul>
+                        <li>Most efficient form of energy storage (9 kcal/g compared to 4 kcal/g for carbohydrates)</li>
+                        <li>Stored in adipose tissue (fat cells) as lipid droplets</li>
+                        <li>Provide long-term energy reserves</li>
+                    </ul>
+                </div>
+                
+                <div class="step-box">
+                    <h4>Insulation and Protection</h4>
+                    <ul>
+                        <li>Subcutaneous fat provides thermal insulation</li>
+                        <li>Visceral fat cushions and protects internal organs</li>
+                        <li>Prevents heat loss in aquatic mammals</li>
+                    </ul>
+                </div>
+                
+                <h3>D. Triglyceride Metabolism</h3>
+                
+                <div class="step-box">
+                    <h4>Lipogenesis</h4>
+                    <ul>
+                        <li>Synthesis of triglycerides from glycerol and fatty acids</li>
+                        <li>Occurs primarily in liver and adipose tissue</li>
+                        <li>Stimulated by insulin after a meal</li>
+                    </ul>
+                </div>
+                
+                <div class="step-box">
+                    <h4>Lipolysis</h4>
+                    <ul>
+                        <li>Breakdown of triglycerides into glycerol and fatty acids</li>
+                        <li>Catalyzed by lipase enzymes</li>
+                        <li>Stimulated by glucagon and epinephrine during fasting or exercise</li>
+                    </ul>
+                </div>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Property</th>
+                            <th>Triglycerides</th>
+                            <th>Carbohydrates</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Energy density</td>
+                            <td>9 kcal/g</td>
+                            <td>4 kcal/g</td>
+                        </tr>
+                        <tr>
+                            <td>Storage form</td>
+                            <td>Adipose tissue</td>
+                            <td>Glycogen (liver, muscles)</td>
+                        </tr>
+                        <tr>
+                            <td>Storage capacity</td>
+                            <td>Unlimited</td>
+                            <td>Limited (≈500g)</td>
+                        </tr>
+                        <tr>
+                            <td>Water of hydration</td>
+                            <td>Minimal</td>
+                            <td>Significant (2-4g water/g glycogen)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+            
+            <section class="card wide-card">
+                <h2>IV. Phospholipids</h2>
+                
+                <h3>A. Structure of Phospholipids</h3>
+                
+                <div class="definition-box">
+                    <p><strong>Phospholipids</strong> are lipids containing a phosphate group. They are the major components of all biological membranes, forming lipid bilayers.</p>
+                </div>
+                
+                <div class="step-box">
+                    <h4>General Structure</h4>
+                    <ul>
+                        <li><strong>Glycerol backbone</strong> (in glycerophospholipids)</li>
+                        <li><strong>Two fatty acid chains</strong> (hydrophobic tails)</li>
+                        <li><strong>Phosphate group</strong> attached to glycerol</li>
+                        <li><strong>Polar head group</strong> attached to phosphate (e.g., choline, ethanolamine, serine)</li>
+                    </ul>
+                </div>
+                
+                <div class="diagram-box">
+                    <h4>Phospholipid Structure</h4>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Phospholipid_TvanBrussel.jpg/800px-Phospholipid_TvanBrussel.jpg" alt="Phospholipid structure" class="diagram">
+                    <p>Structure of a phospholipid showing the amphipathic nature with hydrophilic head and hydrophobic tails</p>
+                </div>
+                
+                <h3>B. Types of Phospholipids</h3>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Phospholipid</th>
+                            <th>Head Group</th>
+                            <th>Common Name</th>
+                            <th>Significance</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Phosphatidylcholine</td>
+                            <td>Choline</td>
+                            <td>Lecithin</td>
+                            <td>Most abundant in cell membranes, emulsifier</td>
+                        </tr>
+                        <tr>
+                            <td>Phosphatidylethanolamine</td>
+                            <td>Ethanolamine</td>
+                            <td>Cephalin</td>
+                            <td>Abundant in brain tissue, involved in membrane fusion</td>
+                        </tr>
+                        <tr>
+                            <td>Phosphatidylserine</td>
+                            <td>Serine</td>
+                            <td>-</td>
+                            <td>Important in apoptosis, blood clotting</td>
+                        </tr>
+                        <tr>
+                            <td>Phosphatidylinositol</td>
+                            <td>Inositol</td>
+                            <td>-</td>
+                            <td>Cell signaling, precursor to second messengers</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <h3>C. Amphipathic Nature and Micelle Formation</h3>
+                
+                <div class="principle-box">
+                    <h4>Amphipathic Nature</h4>
+                    <p>Phospholipids are <strong>amphipathic molecules</strong> - they have both hydrophilic (water-loving) and hydrophobic (water-fearing) regions. This property allows them to form:</p>
+                    <ul>
+                        <li><strong>Micelles:</strong> Spherical structures with hydrophobic tails inward and hydrophilic heads outward</li>
+                        <li><strong>Bilayers:</strong> Two layers of phospholipids with hydrophobic tails facing each other and hydrophilic heads facing the aqueous environment</li>
+                        <li><strong>Liposomes:</strong> Spherical vesicles with aqueous interior enclosed by phospholipid bilayer</li>
+                    </ul>
+                </div>
+                
+                <div class="diagram-box">
+                    <h4>Phospholipid Bilayer</h4>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Lipid_bilayer_section.gif/800px-Lipid_bilayer_section.gif" alt="Lipid bilayer" class="diagram">
+                    <p>Fluid mosaic model of the cell membrane showing phospholipid bilayer with embedded proteins</p>
+                </div>
+                
+                <h3>D. Functions of Phospholipids</h3>
+                
+                <div class="step-box">
+                    <h4>Membrane Structure</h4>
+                    <ul>
+                        <li>Form the basic structure of all biological membranes</li>
+                        <li>Create a selectively permeable barrier</li>
+                        <li>Provide fluidity to membranes</li>
+                    </ul>
+                </div>
+                
+                <div class="step-box">
+                    <h4>Cell Signaling</h4>
+                    <ul>
+                        <li>Phosphatidylinositol derivatives act as second messengers</li>
+                        <li>Platelet-activating factor (PAF) is a phospholipid signaling molecule</li>
+                    </ul>
+                </div>
+                
+                <div class="step-box">
+                    <h4>Emulsification</h4>
+                    <ul>
+                        <li>Lecithin (phosphatidylcholine) acts as an emulsifier in digestion</li>
+                        <li>Helps break down fat globules into smaller droplets</li>
+                    </ul>
+                </div>
+            </section>
+            
+            <section class="card wide-card">
+                <h2>V. Steroids and Cholesterol</h2>
+                
+                <h3>A. Structure of Steroids</h3>
+                
+                <div class="definition-box">
+                    <p><strong>Steroids</strong> are lipids characterized by a carbon skeleton consisting of four fused rings: three six-membered cyclohexane rings and one five-membered cyclopentane ring.</p>
+                </div>
+                
+                <div class="step-box">
+                    <h4>Basic Steroid Structure</h4>
+                    <ul>
+                        <li>Four fused rings (A, B, C, D)</li>
+                        <li>17 carbon atoms in the steroid nucleus</li>
+                        <li>Various functional groups attached to the rings</li>
+                        <li>Rigid, planar structure</li>
+                    </ul>
+                </div>
+                
+                <div class="diagram-box">
+                    <h4>Steroid Nucleus</h4>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Steroid_numbering.png/600px-Steroid_numbering.png" alt="Steroid structure" class="diagram">
+                    <p>The basic steroid nucleus showing the four fused rings and numbering system</p>
+                </div>
+                
+                <h3>B. Cholesterol</h3>
+                
+                <div class="definition-box">
+                    <p><strong>Cholesterol</strong> is a steroid alcohol found in animal tissues. It is an essential component of animal cell membranes and a precursor for other steroids.</p>
+                </div>
+                
+                <div class="step-box">
+                    <h4>Structure and Properties</h4>
+                    <ul>
+                        <li>Contains a hydroxyl group at C-3 (makes it an alcohol)</li>
+                        <li>Has a double bond between C-5 and C-6</li>
+                        <li>Contains an 8-carbon branched hydrocarbon chain at C-17</li>
+                        <li>Amphipathic due to polar hydroxyl group and nonpolar hydrocarbon structure</li>
+                    </ul>
+                </div>
+                
+                <div class="step-box">
+                    <h4>Functions of Cholesterol</h4>
+                    <ul>
+                        <li><strong>Membrane component:</strong> Modulates membrane fluidity and permeability</li>
+                        <li><strong>Precursor:</strong> For steroid hormones, bile acids, and vitamin D</li>
+                        <li><strong>Lipoprotein formation:</strong> Component of lipoproteins that transport lipids in blood</li>
+                        <li><strong>Nerve conduction:</strong> Component of myelin sheaths</li>
+                    </ul>
+                </div>
+                
+                <h3>C. Other Important Steroids</h3>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Steroid</th>
+                            <th>Type</th>
+                            <th>Source/Function</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Cholesterol</td>
+                            <td>Sterol</td>
+                            <td>Cell membrane component, hormone precursor</td>
+                        </tr>
+                        <tr>
+                            <td>Cortisol</td>
+                            <td>Glucocorticoid</td>
+                            <td>Stress hormone, regulates metabolism</td>
+                        </tr>
+                        <tr>
+                            <td>Aldosterone</td>
+                            <td>Mineralocorticoid</td>
+                            <td>Regulates sodium and water balance</td>
+                        </tr>
+                        <tr>
+                            <td>Testosterone</td>
+                            <td>Androgen</td>
+                            <td>Male sex hormone</td>
+                        </tr>
+                        <tr>
+                            <td>Estradiol</td>
+                            <td>Estrogen</td>
+                            <td>Female sex hormone</td>
+                        </tr>
+                        <tr>
+                            <td>Progesterone</td>
+                            <td>Progestin</td>
+                            <td>Prepares uterus for pregnancy</td>
+                        </tr>
+                        <tr>
+                            <td>Vitamin D</td>
+                            <td>Secosteroid</td>
+                            <td>Calcium absorption, bone health</td>
+                        </tr>
+                        <tr>
+                            <td>Bile acids</td>
+                            <td>Steroid derivatives</td>
+                            <td>Emulsify fats in digestion</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+            
+            <section class="card wide-card">
+                <h2>VI. Other Important Lipids</h2>
+                
+                <h3>A. Waxes</h3>
+                
+                <div class="definition-box">
+                    <p><strong>Waxes</strong> are esters of long-chain fatty acids with long-chain alcohols. They are highly hydrophobic and serve protective functions.</p>
+                </div>
+                
+                <div class="step-box">
+                    <h4>Structure and Examples</h4>
+                    <ul>
+                        <li><strong>Beeswax:</strong> Esters of palmitic acid with triacontanol</li>
+                        <li><strong>Carnauba wax:</strong> From palm leaves, used in polishes</li>
+                        <li><strong>Cuticle wax:</strong> On plant leaves and stems, reduces water loss</li>
+                        <li><strong>Earwax (cerumen):</strong> Protects ear canal</li>
+                    </ul>
+                </div>
+                
+                <h3>B. Glycolipids</h3>
+                
+                <div class="definition-box">
+                    <p><strong>Glycolipids</strong> are lipids with attached carbohydrate groups. They are important components of cell membranes, especially in nerve cells.</p>
+                </div>
+                
+                <div class="step-box">
+                    <h4>Types and Functions</h4>
+                    <ul>
+                        <li><strong>Cerebrosides:</strong> Simplest glycolipids, contain one sugar unit (galactose or glucose)</li>
+                        <li><strong>Gangliosides:</strong> Complex glycolipids with oligosaccharide chains, important in nerve cells</li>
+                        <li><strong>Functions:</strong> Cell recognition, immune response, nerve conduction</li>
+                    </ul>
+                </div>
+                
+                <h3>C. Lipoproteins</h3>
+                
+                <div class="definition-box">
+                    <p><strong>Lipoproteins</strong> are complexes of lipids and proteins that transport lipids in the bloodstream.</p>
+                </div>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Lipoprotein</th>
+                            <th>Density</th>
+                            <th>Main Components</th>
+                            <th>Function</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Chylomicrons</td>
+                            <td>Lowest</td>
+                            <td>Dietary triglycerides</td>
+                            <td>Transport dietary fat from intestine to tissues</td>
+                        </tr>
+                        <tr>
+                            <td>VLDL</td>
+                            <td>Very Low</td>
+                            <td>Endogenous triglycerides</td>
+                            <td>Transport triglycerides from liver to tissues</td>
+                        </tr>
+                        <tr>
+                            <td>LDL</td>
+                            <td>Low</td>
+                            <td>Cholesterol</td>
+                            <td>Deliver cholesterol to tissues ("bad cholesterol")</td>
+                        </tr>
+                        <tr>
+                            <td>HDL</td>
+                            <td>High</td>
+                            <td>Proteins, phospholipids</td>
+                            <td>Remove cholesterol from tissues ("good cholesterol")</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <h3>D. Eicosanoids</h3>
+                
+                <div class="definition-box">
+                    <p><strong>Eicosanoids</strong> are signaling molecules derived from 20-carbon polyunsaturated fatty acids (arachidonic acid).</p>
+                </div>
+                
+                <div class="step-box">
+                    <h4>Types and Functions</h4>
+                    <ul>
+                        <li><strong>Prostaglandins:</strong> Inflammatory response, pain, fever, blood clotting</li>
+                        <li><strong>Thromboxanes:</strong> Promote platelet aggregation, vasoconstriction</li>
+                        <li><strong>Leukotrienes:</strong> Involved in allergic and inflammatory responses</li>
+                    </ul>
+                </div>
+            </section>
+            
+            <section class="card wide-card">
+                <h2>VII. Functions of Lipids in Living Organisms</h2>
+                
+                <h3>A. Energy Storage</h3>
+                
+                <div class="definition-box">
+                    <p>Lipids serve as the <strong>most efficient energy storage molecules</strong>, providing more than twice the energy per gram compared to carbohydrates.</p>
+                </div>
+                
+                <div class="example-box">
+                    <p><strong>Examples:</strong></p>
+                    <ul>
+                        <li><strong>Triglycerides:</strong> Stored in adipose tissue as energy reserves</li>
+                        <li><strong>Brown fat:</strong> Specialized for heat production (thermogenesis)</li>
+                        <li><strong>Seed oils:</strong> Energy source for germinating plants</li>
+                    </ul>
+                </div>
+                
+                <h3>B. Structural Components</h3>
+                
+                <div class="definition-box">
+                    <p>Lipids are <strong>essential structural components</strong> of biological membranes and protective coatings.</p>
+                </div>
+                
+                <div class="example-box">
+                    <p><strong>Examples:</strong></p>
+                    <ul>
+                        <li><strong>Phospholipids:</strong> Form lipid bilayers of all cell membranes</li>
+                        <li><strong>Cholesterol:</strong> Modulates membrane fluidity and stability</li>
+                        <li><strong>Waxes:</strong> Form protective coatings on leaves, feathers, and skin</li>
+                        <li><strong>Myelin:</strong> Lipid-rich sheath around nerve fibers for insulation</li>
+                    </ul>
+                </div>
+                
+                <h3>C. Insulation and Protection</h3>
+                
+                <div class="definition-box">
+                    <p>Lipids provide <strong>thermal insulation and physical protection</strong> for organisms.</p>
+                </div>
+                
+                <div class="example-box">
+                    <p><strong>Examples:</strong></p>
+                    <ul>
+                        <li><strong>Subcutaneous fat:</strong> Insulates against heat loss in mammals</li>
+                        <li><strong>Blubber:</strong> Thick fat layer in marine mammals for insulation and buoyancy</li>
+                        <li><strong>Visceral fat:</strong> Cushions internal organs from physical impact</li>
+                    </ul>
+                </div>
+                
+                <h3>D. Signaling and Regulation</h3>
+                
+                <div class="definition-box">
+                    <p>Lipids function as <strong>signaling molecules and hormones</strong> that regulate various physiological processes.</p>
+                </div>
+                
+                <div class="example-box">
+                    <p><strong>Examples:</strong></p>
+                    <ul>
+                        <li><strong>Steroid hormones:</strong> Cortisol, testosterone, estrogen regulate metabolism and reproduction</li>
+                        <li><strong>Eicosanoids:</strong> Prostaglandins, leukotrienes mediate inflammation and immunity</li>
+                        <li><strong>Phosphatidylinositol derivatives:</strong> Act as second messengers in cell signaling</li>
+                    </ul>
+                </div>
+                
+                <h3>E. Other Functions</h3>
+                
+                <div class="example-box">
+                    <p><strong>Additional lipid functions:</strong></p>
+                    <ul>
+                        <li><strong>Vitamin absorption:</strong> Bile salts emulsify fats and aid absorption of fat-soluble vitamins (A, D, E, K)</li>
+                        <li><strong>Waterproofing:</strong> Cuticular waxes on plants prevent water loss</li>
+                        <li><strong>Buoyancy:</strong> Lipid stores help aquatic organisms maintain buoyancy</li>
+                        <li><strong>Pheromones:</strong> Some lipids act as chemical signals between organisms</li>
+                    </ul>
+                </div>
+            </section>
+            
+            <section class="card wide-card">
+                <h2>VIII. Lipid Digestion and Metabolism</h2>
+                
+                <h3>A. Digestion of Lipids</h3>
+                
+                <div class="step-box">
+                    <h4>In the Mouth and Stomach</h4>
+                    <ul>
+                        <li><strong>Lingual lipase:</strong> Begins digestion of short-chain triglycerides</li>
+                        <li><strong>Gastric lipase:</strong> Continues triglyceride digestion in stomach</li>
+                        <li>Minimal lipid digestion occurs due to hydrophobic nature and low pH</li>
+                    </ul>
+                </div>
+                
+                <div class="step-box">
+                    <h4>In the Small Intestine</h4>
+                    <ul>
+                        <li><strong>Bile salts:</strong> Emulsify fat globules into smaller droplets (micelles)</li>
+                        <li><strong>Pancreatic lipase:</strong> Hydrolyzes triglycerides into monoglycerides and fatty acids</li>
+                        <li><strong>Colipase:</strong> Helps anchor lipase to lipid droplets</li>
+                        <li><strong>Other enzymes:</strong> Cholesterol esterase, phospholipase A2</li>
+                    </ul>
+                </div>
+                
+                <div class="step-box">
+                    <h4>Absorption and Transport</h4>
+                    <ul>
+                        <li>Micelles transport lipid digestion products to intestinal mucosa</li>
+                        <li>Products are reassembled into triglycerides in enterocytes</li>
+                        <li>Triglycerides combine with proteins to form chylomicrons</li>
+                        <li>Chylomicrons enter lymphatic system (lacteals), then bloodstream</li>
+                    </ul>
+                </div>
+                
+                <h3>B. Lipid Metabolism</h3>
+                
+                <div class="step-box">
+                    <h4>Lipogenesis</h4>
+                    <ul>
+                        <li>Synthesis of fatty acids from acetyl-CoA</li>
+                        <li>Occurs in cytoplasm, requires NADPH and ATP</li>
+                        <li>Key enzyme: Fatty acid synthase</li>
+                        <li>Primary sites: Liver and adipose tissue</li>
+                    </ul>
+                </div>
+                
+                <div class="step-box">
+                    <h4>β-Oxidation</h4>
+                    <ul>
+                        <li>Breakdown of fatty acids to acetyl-CoA</li>
+                        <li>Occurs in mitochondria</li>
+                        <li>Produces NADH, FADH₂, and acetyl-CoA for energy production</li>
+                        <li>Key steps: Activation, transport into mitochondria, four-step cyclic process</li>
+                    </ul>
+                </div>
+                
+                <div class="step-box">
+                    <h4>Ketogenesis</h4>
+                    <ul>
+                        <li>Production of ketone bodies (acetoacetate, β-hydroxybutyrate, acetone) from acetyl-CoA</li>
+                        <li>Occurs in liver mitochondria during fasting or starvation</li>
+                        <li>Provides alternative energy source for brain and other tissues</li>
+                    </ul>
+                </div>
+                
+                <div class="step-box">
+                    <h4>Cholesterol Metabolism</h4>
+                    <ul>
+                        <li><strong>Synthesis:</strong> From acetyl-CoA via mevalonate pathway</li>
+                        <li><strong>Regulation:</strong> Feedback inhibition by cholesterol</li>
+                        <li><strong>Excretion:</strong> Converted to bile acids in liver</li>
+                    </ul>
+                </div>
+            </section>
+            
+            <section class="card">
+                <h2>Practice Problems ✍️</h2>
+                
+                <div class="example-box">
+                    <p><strong>Problem 1:</strong> Compare and contrast saturated and unsaturated fatty acids in terms of structure, properties, and biological significance.</p>
+                </div>
+                
+                <div class="example-box">
+                    <p><strong>Problem 2:</strong> Explain the formation of a triglyceride from its components. What type of reaction is this and what are the products?</p>
+                </div>
+                
+                <div class="example-box">
+                    <p><strong>Problem 3:</strong> Describe the amphipathic nature of phospholipids and explain how this property enables them to form bilayers in aqueous environments.</p>
+                </div>
+                
+                <div class="example-box">
+                    <p><strong>Problem 4:</strong> Compare the structure and functions of cholesterol with those of a typical phospholipid.</p>
+                </div>
+                
+                <div class="example-box">
+                    <p><strong>Problem 5:</strong> Outline the process of lipid digestion and absorption in humans, including the role of bile salts and lipase enzymes.</p>
+                </div>
+                
+                <h3>Solutions</h3>
+                
+                <div class="example-box">
+                    <p><strong>Solution 1:</strong></p>
+                    <p><strong>Saturated fatty acids:</strong> No double bonds, straight chains, pack tightly, higher melting points, solid at room temperature, associated with cardiovascular risk.</p>
+                    <p><strong>Unsaturated fatty acids:</strong> Contain double bonds, kinked chains, pack loosely, lower melting points, liquid at room temperature, essential fatty acids required in diet, health benefits.</p>
+                </div>
+                
+                <div class="example-box">
+                    <p><strong>Solution 2:</strong></p>
+                    <p>Triglycerides form from one glycerol molecule and three fatty acid molecules via <strong>esterification (condensation) reactions</strong>. The hydroxyl groups of glycerol react with the carboxyl groups of fatty acids, forming ester bonds and releasing three water molecules. The product is a triglyceride (triacylglycerol).</p>
+                </div>
+                
+                <div class="example-box">
+                    <p><strong>Solution 3:</strong></p>
+                    <p>Phospholipids are <strong>amphipathic</strong> - they have both hydrophilic (phosphate head group) and hydrophobic (fatty acid tails) regions. In aqueous environments, phospholipids spontaneously arrange into bilayers with hydrophobic tails facing inward (away from water) and hydrophilic heads facing outward (toward water). This minimizes hydrophobic interactions with water and creates a stable barrier.</p>
+                </div>
+                
+                <div class="example-box">
+                    <p><strong>Solution 4:</strong></p>
+                    <p><strong>Cholesterol:</strong> Steroid with four fused rings, hydroxyl group at C-3, rigid planar structure, amphipathic, modulates membrane fluidity, precursor for steroid hormones.</p>
+                    <p><strong>Phospholipid:</strong> Glycerol backbone with two fatty acids and phosphate group, amphipathic, forms bilayer membranes, contains ester bonds, fluid and flexible.</p>
+                    <p>Both are amphipathic membrane components, but cholesterol is a steroid while phospholipids are glycerol-based with fatty acid chains.</p>
+                </div>
+                
+                <div class="example-box">
+                    <p><strong>Solution 5:</strong></p>
+                    <ul>
+                        <li><strong>Emulsification:</strong> Bile salts emulsify large fat globules into smaller micelles</li>
+                        <li><strong>Enzymatic digestion:</strong> Pancreatic lipase hydrolyzes triglycerides into monoglycerides and fatty acids</li>
+                        <li><strong>Micelle formation:</strong> Digestion products form mixed micelles with bile salts</li>
+                        <li><strong>Absorption:</strong> Products diffuse into intestinal epithelial cells</li>
+                        <li><strong>Resynthesis:</strong> Triglycerides resynthesized in enterocytes</li>
+                        <li><strong>Packaging:</strong> Combined with proteins to form chylomicrons</li>
+                        <li><strong>Transport:</strong> Chylomicrons enter lymphatic system, then bloodstream</li>
+                    </ul>
+                </div>
+            </section>
+            
+            <section class="card">
+                <h2>Key Concepts Recap</h2>
+                
+                <div class="concept-box">
+                    <h3>Fatty Acids</h3>
+                    <p>Building blocks of many lipids; saturated (no double bonds) vs unsaturated (one or more double bonds); essential fatty acids must be obtained from diet</p>
+                </div>
+                
+                <div class="concept-box">
+                    <h3>Triglycerides</h3>
+                    <p>Glycerol + 3 fatty acids; energy storage molecules; fats (solid) vs oils (liquid); 9 kcal/g energy</p>
+                </div>
+                
+                <div class="concept-box">
+                    <h3>Phospholipids</h3>
+                    <p>Amphipathic molecules; glycerol + 2 fatty acids + phosphate + head group; form bilayer membranes; essential for cell structure</p>
+                </div>
+                
+                <div class="concept-box">
+                    <h3>Steroids</h3>
+                    <p>Four fused ring structure; cholesterol is key membrane component and hormone precursor; steroid hormones regulate various processes</p>
+                </div>
+                
+                <div class="concept-box">
+                    <h3>Lipid Functions</h3>
+                    <p>Energy storage, membrane structure, insulation, protection, signaling, hormone synthesis</p>
+                </div>
+                
+                <div class="concept-box">
+                    <h3>Amphipathic Nature</h3>
+                    <p>Having both hydrophilic and hydrophobic regions; enables membrane formation and micelle formation in digestion</p>
+                </div>
+            </section>
+            
+            <section class="card wide-card">
+                <h2>Learning Resources</h2>
+                <p>Enhance your understanding with these resources:</p>
+                
+                <div class="resource-links">
+                    <a href="https://youtu.be/VaZ6pMqXHuU" class="btn" target="_blank">
+                        <i class="fab fa-youtube"></i> Lipids Video 1
+                    </a>
+                    <a href="https://youtu.be/In0mraH-nY8" class="btn" target="_blank">
+                        <i class="fab fa-youtube"></i> Lipids Video 2
+                    </a>
+                    <a href="https://youtu.be/QhUrc4BnPgg" class="btn" target="_blank">
+                        <i class="fab fa-youtube"></i> Lipid Membranes
+                    </a>
+                </div>
+                
+                <div class="creator-link">
+                    <p>Tutor: Kennis | Tutorial: Toscana | Contact: +234 803 933 1829 | Year: 2025</p>
+                    <p>Page designed by <a href="https://wa.me/qr/5XXPE2NTKQGSO1" target="_blank">KenStack</a></p>
+                </div>
+            </section>
+        </div>
+        
+        <section class="quiz-section wide-card">
+            <h2>Quiz Time! 🧠</h2>
+            <p>Test your knowledge with 30 questions about Lipids!</p>
+            
+            <div class="quiz-instructions">
+                <h3><i class="fas fa-info-circle"></i> Quiz Instructions</h3>
+                <p><strong>Topic:</strong> Lipids</p>
+                <p><strong>Duration:</strong> 25 minutes ⏱️</p>
+                <p><strong>Questions:</strong> 30 multiple-choice questions</p>
+                <p>After submission, you'll receive detailed feedback with your score, percentage, and personalized analysis.</p>
+                <p><strong>Remember:</strong> This is a learning tool to help you identify strengths and areas for improvement.</p>
+            </div>
+            
+            <button id="startQuiz" class="btn">
+                <i class="fas fa-play"></i> Start Quiz Now
+            </button>
+            
+            <div id="quizContainer" class="quiz-container hidden">
+                <div class="timer" id="timer">25:00</div>
+                
+                <div id="questions">
+                    <!-- Questions will be inserted here by JavaScript -->
+                </div>
+                
+                <button id="submitQuiz" class="btn btn-success">
+                    <i class="fas fa-paper-plane"></i> Submit Quiz
+                </button>
+            </div>
+            
+            <div id="results" class="results hidden">
+                <!-- Results will be displayed here -->
+            </div>
+        </section>
+        
+        <section class="homework wide-card">
+            <h2>Homework Assignment</h2>
+            <ul>
+                <li>🎯 Draw and label the structures of saturated and unsaturated fatty acids</li>
+                <li>🎯 Explain the formation of a triglyceride from glycerol and fatty acids</li>
+                <li>🎯 Compare and contrast phospholipids and triglycerides</li>
+                <li>🎯 Describe the structure and functions of cholesterol</li>
+                <li>🎯 Outline the process of lipid digestion and absorption</li>
+                <li>🎯 Complete the quiz and review any incorrect answers</li>
+            </ul>
+        </section>
+        
+        <section class="card wide-card">
+            <h2>End of Class</h2>
+            <p>Excellent work today! 👏</p>
+            <p>You've explored the diverse and essential world of lipids - from energy storage to membrane structure and signaling.</p>
+            <p>Keep exploring the amazing world of biochemistry! 🌟</p>
+        </section>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <p>Lipids Learning Resource &copy; 2025</p>
+            <p>Designed for JUPEB/A-Level Biology Students</p>
+        </div>
+    </footer>
+
+    <script>
+        // Create floating background elements
+        function createFloatingElements() {
+            const floatingBg = document.getElementById('floatingBg');
+            const lipidIcons = [
+                'fa-oil-can', 'fa-tint', 'fa-atom', 'fa-flask', 
+                'fa-vial', 'fa-microscope', 'fa-prescription-bottle', 
+                'fa-heart', 'fa-brain', 'fa-seedling', 'fa-capsules', 'fa-pills'
+            ];
+            
+            // Create floating icons
+            for (let i = 0; i < 20; i++) {
+                const icon = document.createElement('i');
+                icon.className = `floating-element fas ${lipidIcons[Math.floor(Math.random() * lipidIcons.length)]}`;
+                icon.style.left = `${Math.random() * 100}%`;
+                icon.style.animationDelay = `${Math.random() * 20}s`;
+                icon.style.fontSize = `${Math.random() * 20 + 15}px`;
+                floatingBg.appendChild(icon);
+            }
+            
+            // Create floating bubbles
+            for (let i = 0; i < 15; i++) {
+                const bubble = document.createElement('div');
+                bubble.className = 'floating-bubble';
+                bubble.style.left = `${Math.random() * 100}%`;
+                bubble.style.animationDelay = `${Math.random() * 15}s`;
+                bubble.style.width = `${Math.random() * 40 + 10}px`;
+                bubble.style.height = bubble.style.width;
+                floatingBg.appendChild(bubble);
+            }
+        }
+        
+        // Initialize floating elements
+        createFloatingElements();
+
+        // Quiz questions array (30 questions)
+        const quizQuestions = [
+            {
+                question: "Which of the following is NOT a characteristic of lipids?",
+                options: [
+                    "Soluble in water",
+                    "Soluble in organic solvents",
+                    "High proportion of C-H bonds",
+                    "Energy-rich molecules"
+                ],
+                correct: 0,
+                explanation: "Lipids are insoluble in water but soluble in organic solvents like ethanol, chloroform, and ether."
+            },
+            {
+                question: "What is the general structure of a fatty acid?",
+                options: [
+                    "Glycerol + 3 fatty acids",
+                    "Carboxyl group + hydrocarbon chain",
+                    "Phosphate + glycerol + 2 fatty acids",
+                    "Four fused rings"
+                ],
+                correct: 1,
+                explanation: "Fatty acids consist of a carboxyl group (-COOH) attached to a long hydrocarbon chain."
+            },
+            {
+                question: "Which type of fatty acid has no double bonds between carbon atoms?",
+                options: [
+                    "Saturated",
+                    "Monounsaturated",
+                    "Polyunsaturated",
+                    "Trans-fatty acid"
+                ],
+                correct: 0,
+                explanation: "Saturated fatty acids have no double bonds between carbon atoms in their hydrocarbon chains."
+            },
+            {
+                question: "What is the energy yield per gram for lipids compared to carbohydrates?",
+                options: [
+                    "Lipids: 4 kcal/g, Carbohydrates: 4 kcal/g",
+                    "Lipids: 9 kcal/g, Carbohydrates: 4 kcal/g",
+                    "Lipids: 4 kcal/g, Carbohydrates: 9 kcal/g",
+                    "Lipids: 7 kcal/g, Carbohydrates: 5 kcal/g"
+                ],
+                correct: 1,
+                explanation: "Lipids yield approximately 9 kcal/g, while carbohydrates yield approximately 4 kcal/g."
+            },
+            {
+                question: "Which lipid is the main component of cell membranes?",
+                options: [
+                    "Triglycerides",
+                    "Phospholipids",
+                    "Waxes",
+                    "Steroids"
+                ],
+                correct: 1,
+                explanation: "Phospholipids are the main components of all biological membranes, forming lipid bilayers."
+            },
+            {
+                question: "What is the structure formed by phospholipids in aqueous environments?",
+                options: [
+                    "Micelles only",
+                    "Lipid bilayer only",
+                    "Both micelles and lipid bilayers",
+                    "Triglyceride droplets"
+                ],
+                correct: 2,
+                explanation: "Phospholipids can form both micelles (spherical structures) and lipid bilayers (two-layer sheets) in aqueous environments."
+            },
+            {
+                question: "Which of these is a function of triglycerides?",
+                options: [
+                    "Energy storage",
+                    "Membrane structure",
+                    "Hormone synthesis",
+                    "Enzyme catalysis"
+                ],
+                correct: 0,
+                explanation: "Triglycerides primarily function as energy storage molecules in adipose tissue."
+            },
+            {
+                question: "What type of reaction forms triglycerides from glycerol and fatty acids?",
+                options: [
+                    "Hydrolysis",
+                    "Esterification (condensation)",
+                    "Oxidation",
+                    "Reduction"
+                ],
+                correct: 1,
+                explanation: "Triglycerides form via esterification (condensation) reactions between glycerol and fatty acids, releasing water molecules."
+            },
+            {
+                question: "Which lipid is characterized by a four-fused-ring structure?",
+                options: [
+                    "Phospholipids",
+                    "Triglycerides",
+                    "Fatty acids",
+                    "Steroids"
+                ],
+                correct: 3,
+                explanation: "Steroids are characterized by a carbon skeleton consisting of four fused rings."
+            },
+            {
+                question: "What is the primary function of cholesterol in cell membranes?",
+                options: [
+                    "Energy storage",
+                    "Modulation of membrane fluidity",
+                    "Enzyme activity",
+                    "DNA replication"
+                ],
+                correct: 1,
+                explanation: "Cholesterol modulates membrane fluidity by interacting with phospholipid fatty acid chains."
+            },
+            {
+                question: "Which of these is an essential fatty acid?",
+                options: [
+                    "Palmitic acid",
+                    "Stearic acid",
+                    "Linoleic acid",
+                    "Oleic acid"
+                ],
+                correct: 2,
+                explanation: "Linoleic acid (an omega-6 fatty acid) is an essential fatty acid that must be obtained from the diet."
+            },
+            {
+                question: "What is the main difference between fats and oils?",
+                options: [
+                    "Fats are from animals, oils are from plants",
+                    "Fats are saturated and solid at room temperature, oils are unsaturated and liquid",
+                    "Fats contain glycerol, oils do not",
+                    "Fats are phospholipids, oils are triglycerides"
+                ],
+                correct: 1,
+                explanation: "Fats are predominantly saturated and solid at room temperature, while oils are predominantly unsaturated and liquid at room temperature."
+            },
+            {
+                question: "Which enzyme is primarily responsible for triglyceride digestion in the small intestine?",
+                options: [
+                    "Amylase",
+                    "Pepsin",
+                    "Pancreatic lipase",
+                    "Trypsin"
+                ],
+                correct: 2,
+                explanation: "Pancreatic lipase is the main enzyme that hydrolyzes triglycerides in the small intestine."
+            },
+            {
+                question: "What is the function of bile salts in lipid digestion?",
+                options: [
+                    "Enzyme activation",
+                    "Emulsification of fats",
+                    "Absorption of fatty acids",
+                    "Synthesis of triglycerides"
+                ],
+                correct: 1,
+                explanation: "Bile salts emulsify large fat globules into smaller droplets, increasing surface area for lipase action."
+            },
+            {
+                question: "Which lipoprotein transports dietary lipids from the intestine to tissues?",
+                options: [
+                    "VLDL",
+                    "LDL",
+                    "HDL",
+                    "Chylomicrons"
+                ],
+                correct: 3,
+                explanation: "Chylomicrons transport dietary lipids (triglycerides) from the intestine to tissues via the lymphatic system and bloodstream."
+            },
+            {
+                question: "What is β-oxidation?",
+                options: [
+                    "Synthesis of fatty acids",
+                    "Breakdown of fatty acids to acetyl-CoA",
+                    "Formation of ketone bodies",
+                    "Cholesterol synthesis"
+                ],
+                correct: 1,
+                explanation: "β-oxidation is the metabolic pathway that breaks down fatty acids into acetyl-CoA units for energy production."
+            },
+            {
+                question: "Which of these is NOT a steroid hormone?",
+                options: [
+                    "Cortisol",
+                    "Testosterone",
+                    "Insulin",
+                    "Estradiol"
+                ],
+                correct: 2,
+                explanation: "Insulin is a peptide hormone, not a steroid hormone. Cortisol, testosterone, and estradiol are all steroid hormones."
+            },
+            {
+                question: "What are eicosanoids derived from?",
+                options: [
+                    "Cholesterol",
+                    "20-carbon polyunsaturated fatty acids",
+                    "Glycerol",
+                    "Glucose"
+                ],
+                correct: 1,
+                explanation: "Eicosanoids (prostaglandins, thromboxanes, leukotrienes) are derived from 20-carbon polyunsaturated fatty acids like arachidonic acid."
+            },
+            {
+                question: "Which vitamin is fat-soluble?",
+                options: [
+                    "Vitamin C",
+                    "Vitamin B12",
+                    "Vitamin D",
+                    "Vitamin B6"
+                ],
+                correct: 2,
+                explanation: "Vitamin D is a fat-soluble vitamin (along with vitamins A, E, and K). Vitamin C and B vitamins are water-soluble."
+            },
+            {
+                question: "What is the main function of waxes in plants and animals?",
+                options: [
+                    "Energy storage",
+                    "Membrane structure",
+                    "Waterproofing and protection",
+                    "Hormone synthesis"
+                ],
+                correct: 2,
+                explanation: "Waxes serve primarily as waterproofing and protective coatings (e.g., cuticular waxes on plants, earwax in animals)."
+            },
+            {
+                question: "Which of these is a characteristic of unsaturated fatty acids?",
+                options: [
+                    "Straight chains",
+                    "Higher melting points",
+                    "Double bonds in hydrocarbon chain",
+                    "Solid at room temperature"
+                ],
+                correct: 2,
+                explanation: "Unsaturated fatty acids contain one or more double bonds in their hydrocarbon chains, which creates kinks and lowers melting points."
+            },
+            {
+                question: "What is ketogenesis?",
+                options: [
+                    "Breakdown of ketone bodies",
+                    "Synthesis of ketone bodies from acetyl-CoA",
+                    "Breakdown of fatty acids",
+                    "Synthesis of cholesterol"
+                ],
+                correct: 1,
+                explanation: "Ketogenesis is the synthesis of ketone bodies (acetoacetate, β-hydroxybutyrate, acetone) from acetyl-CoA in the liver during fasting or starvation."
+            },
+            {
+                question: "Which lipoprotein is often called 'bad cholesterol'?",
+                options: [
+                    "Chylomicrons",
+                    "VLDL",
+                    "LDL",
+                    "HDL"
+                ],
+                correct: 2,
+                explanation: "LDL (low-density lipoprotein) is often called 'bad cholesterol' because high levels are associated with increased risk of atherosclerosis."
+            },
+            {
+                question: "What is the amphipathic nature of phospholipids?",
+                options: [
+                    "They contain both amino acids and fatty acids",
+                    "They have both hydrophilic and hydrophobic regions",
+                    "They can act as both acids and bases",
+                    "They contain both saturated and unsaturated fatty acids"
+                ],
+                correct: 1,
+                explanation: "Phospholipids are amphipathic, meaning they have both hydrophilic (phosphate head) and hydrophobic (fatty acid tails) regions."
+            },
+            {
+                question: "Which process describes the synthesis of fatty acids?",
+                options: [
+                    "β-oxidation",
+                    "Glycolysis",
+                    "Lipogenesis",
+                    "Ketogenesis"
+                ],
+                correct: 2,
+                explanation: "Lipogenesis is the synthesis of fatty acids from acetyl-CoA, primarily occurring in the liver and adipose tissue."
+            },
+            {
+                question: "What is the primary storage site for triglycerides in humans?",
+                options: [
+                    "Liver",
+                    "Muscles",
+                    "Adipose tissue",
+                    "Blood"
+                ],
+                correct: 2,
+                explanation: "Triglycerides are primarily stored in adipose tissue (fat cells) throughout the body."
+            },
+            {
+                question: "Which of these is NOT a function of lipids?",
+                options: [
+                    "Energy storage",
+                    "Membrane structure",
+                    "Oxygen transport",
+                    "Cell signaling"
+                ],
+                correct: 2,
+                explanation: "Oxygen transport is primarily the function of hemoglobin (a protein), not lipids."
+            },
+            {
+                question: "What is the main component of myelin sheaths around nerve fibers?",
+                options: [
+                    "Proteins",
+                    "Carbohydrates",
+                    "Lipids",
+                    "Nucleic acids"
+                ],
+                correct: 2,
+                explanation: "Myelin sheaths are lipid-rich structures that insulate nerve fibers, enabling rapid nerve impulse conduction."
+            },
+            {
+                question: "Which of these lipids is a precursor for vitamin D synthesis?",
+                options: [
+                    "Triglycerides",
+                    "Phospholipids",
+                    "Cholesterol",
+                    "Waxes"
+                ],
+                correct: 2,
+                explanation: "Cholesterol is a precursor for vitamin D synthesis in the skin upon exposure to sunlight."
+            },
+            {
+                question: "What happens during lipolysis?",
+                options: [
+                    "Synthesis of triglycerides",
+                    "Breakdown of triglycerides to fatty acids and glycerol",
+                    "Synthesis of phospholipids",
+                    "Breakdown of cholesterol"
+                ],
+                correct: 1,
+                explanation: "Lipolysis is the breakdown of triglycerides into fatty acids and glycerol, primarily occurring in adipose tissue."
+            }
+        ];
+
+        // Quiz functionality
+        document.getElementById('startQuiz').addEventListener('click', startQuiz);
+        document.getElementById('submitQuiz').addEventListener('click', submitQuiz);
+
+        let timeLeft = 25 * 60; // 25 minutes in seconds
+        let timerInterval;
+        let userAnswers = [];
+
+        function startQuiz() {
+            document.getElementById('startQuiz').classList.add('hidden');
+            document.getElementById('quizContainer').classList.remove('hidden');
+            
+            // Display questions
+            const questionsContainer = document.getElementById('questions');
+            quizQuestions.forEach((q, index) => {
+                const questionDiv = document.createElement('div');
+                questionDiv.className = 'question';
+                questionDiv.innerHTML = `
+                    <h3>Question ${index + 1}</h3>
+                    <p>${q.question}</p>
+                    <div class="options">
+                        ${q.options.map((option, optIndex) => `
+                            <div class="option" data-question="${index}" data-option="${optIndex}">
+                                ${option}
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+                questionsContainer.appendChild(questionDiv);
+            });
+
+            // Add event listeners to options
+            document.querySelectorAll('.option').forEach(option => {
+                option.addEventListener('click', selectOption);
+            });
+
+            // Start timer
+            timerInterval = setInterval(updateTimer, 1000);
+            
+            // Initialize user answers array
+            userAnswers = new Array(quizQuestions.length).fill(-1);
+        }
+
+        function selectOption(e) {
+            const questionIndex = parseInt(e.target.getAttribute('data-question'));
+            const optionIndex = parseInt(e.target.getAttribute('data-option'));
+            
+            // Remove selected class from all options in this question
+            const options = document.querySelectorAll(`.option[data-question="${questionIndex}"]`);
+            options.forEach(opt => opt.classList.remove('selected'));
+            
+            // Add selected class to clicked option
+            e.target.classList.add('selected');
+            
+            // Store user's answer
+            userAnswers[questionIndex] = optionIndex;
+        }
+
+        function updateTimer() {
+            timeLeft--;
+            
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            
+            document.getElementById('timer').textContent = 
+                `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            
+            if (timeLeft <= 0) {
+                clearInterval(timerInterval);
+                submitQuiz();
+            }
+        }
+
+        function submitQuiz() {
+            clearInterval(timerInterval);
+            
+            // Calculate score
+            let correctCount = 0;
+            quizQuestions.forEach((q, index) => {
+                if (userAnswers[index] === q.correct) {
+                    correctCount++;
+                }
+            });
+            
+            const score = correctCount;
+            const percentage = Math.round((correctCount / quizQuestions.length) * 100);
+            
+            // Display results
+            const resultsContainer = document.getElementById('results');
+            resultsContainer.classList.remove('hidden');
+            
+            // Generate feedback
+            let strengths = [];
+            let improvements = [];
+            
+            // Analyze performance by category
+            let fattyAcidsCorrect = 0, fattyAcidsTotal = 0;
+            let triglyceridesCorrect = 0, triglyceridesTotal = 0;
+            let phospholipidsCorrect = 0, phospholipidsTotal = 0;
+            let steroidsCorrect = 0, steroidsTotal = 0;
+            let metabolismCorrect = 0, metabolismTotal = 0;
+            
+            quizQuestions.forEach((q, index) => {
+                // Categorize questions
+                const questionText = q.question.toLowerCase();
+                if (questionText.includes("fatty acid") || questionText.includes("saturated") || questionText.includes("unsaturated")) {
+                    fattyAcidsTotal++;
+                    if (userAnswers[index] === q.correct) fattyAcidsCorrect++;
+                } else if (questionText.includes("triglyceride") || questionText.includes("triacylglycerol") || questionText.includes("fat") || questionText.includes("oil")) {
+                    triglyceridesTotal++;
+                    if (userAnswers[index] === q.correct) triglyceridesCorrect++;
+                } else if (questionText.includes("phospholipid") || questionText.includes("membrane") || questionText.includes("bilayer") || questionText.includes("amphipathic")) {
+                    phospholipidsTotal++;
+                    if (userAnswers[index] === q.correct) phospholipidsCorrect++;
+                } else if (questionText.includes("steroid") || questionText.includes("cholesterol") || questionText.includes("hormone")) {
+                    steroidsTotal++;
+                    if (userAnswers[index] === q.correct) steroidsCorrect++;
+                } else if (questionText.includes("digestion") || questionText.includes("metabolism") || questionText.includes("lipoprotein") || questionText.includes("oxidation") || questionText.includes("synthesis")) {
+                    metabolismTotal++;
+                    if (userAnswers[index] === q.correct) metabolismCorrect++;
+                }
+            });
+            
+            // Determine strengths and areas for improvement
+            if (fattyAcidsTotal > 0 && fattyAcidsCorrect / fattyAcidsTotal >= 0.7) strengths.push("understanding fatty acids");
+            else if (fattyAcidsTotal > 0) improvements.push("reviewing fatty acid structures and properties");
+            
+            if (triglyceridesTotal > 0 && triglyceridesCorrect / triglyceridesTotal >= 0.7) strengths.push("knowledge of triglycerides");
+            else if (triglyceridesTotal > 0) improvements.push("studying triglyceride formation and functions");
+            
+            if (phospholipidsTotal > 0 && phospholipidsCorrect / phospholipidsTotal >= 0.7) strengths.push("understanding phospholipids and membranes");
+            else if (phospholipidsTotal > 0) improvements.push("reviewing phospholipid structure and membrane formation");
+            
+            if (steroidsTotal > 0 && steroidsCorrect / steroidsTotal >= 0.7) strengths.push("understanding steroids and cholesterol");
+            else if (steroidsTotal > 0) improvements.push("studying steroid structures and cholesterol functions");
+            
+            if (metabolismTotal > 0 && metabolismCorrect / metabolismTotal >= 0.7) strengths.push("understanding lipid metabolism");
+            else if (metabolismTotal > 0) improvements.push("reviewing lipid digestion and metabolic pathways");
+            
+            // If no specific strengths identified, add generic ones
+            if (strengths.length === 0) {
+                strengths = ["basic understanding of lipid concepts"];
+            }
+            
+            // Generate detailed feedback with explanations for incorrect answers
+            let detailedFeedback = "<h3>Question Review</h3>";
+            quizQuestions.forEach((q, index) => {
+                const userAnswer = userAnswers[index];
+                const isCorrect = userAnswer === q.correct;
+                
+                detailedFeedback += `
+                    <div class="feedback">
+                        <p><strong>Question ${index + 1}:</strong> ${q.question}</p>
+                        <p>Your answer: ${userAnswer !== -1 ? q.options[userAnswer] : "Not answered"} 
+                        ${isCorrect ? '<span style="color:green">✓ Correct</span>' : '<span style="color:red">✗ Incorrect</span>'}</p>
+                        ${!isCorrect ? `<p>Correct answer: ${q.options[q.correct]}</p>` : ''}
+                        <p><strong>Explanation:</strong> ${q.explanation}</p>
+                    </div>
+                `;
+            });
+            
+            resultsContainer.innerHTML = `
+                <h2>Quiz Results</h2>
+                <div class="score">${score}/${quizQuestions.length} (${percentage}%)</div>
+                
+                <div class="feedback">
+                    <h3>Performance Analysis</h3>
+                    <p><span class="strength">Strengths:</span> ${strengths.join(', ')}</p>
+                    <p><span class="improvement">Areas for Improvement:</span> ${improvements.join(', ')}</p>
+                    
+                    <h4>How to Improve:</h4>
+                    <ul>
+                        <li>Review fatty acid structures and the difference between saturated and unsaturated</li>
+                        <li>Study triglyceride formation and their role as energy storage molecules</li>
+                        <li>Understand the amphipathic nature of phospholipids and membrane formation</li>
+                        <li>Learn the structure of steroids and functions of cholesterol</li>
+                        <li>Watch the recommended videos on Lipids</li>
+                    </ul>
+                </div>
+                
+                <p>${percentage >= 80 ? 'Excellent work! You have a strong understanding of Lipids.' : 
+                    percentage >= 60 ? 'Good job! You understand the basics but could benefit from more practice.' : 
+                    'Keep studying! Review the material and try the quiz again to improve your understanding.'}</p>
+                
+                ${detailedFeedback}
+                
+                <button id="retryQuiz" class="btn">Retry Quiz</button>
+            `;
+            
+            document.getElementById('retryQuiz').addEventListener('click', function() {
+                location.reload();
+            });
+            
+            // Scroll to results
+            resultsContainer.scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
